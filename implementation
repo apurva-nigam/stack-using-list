@@ -1,23 +1,54 @@
-stack = []
-def push():
-    element=input("Enter the element: ")
-    stack.append(element)
-    print(stack)
-def pop_element():
-    if not stack:
+class Stack:
+    def __init__(self):
+        self.s = []
+        
+    def push(self,element):
+        self.s.append(element)
+        print(self.s)
+    
+    def top(self):
+        if len(self.s) == 0:
+            return None
+        return self.s[-1]
+        
+    def pop(self):
+        if len(self.s) == 0:
+            return None
+        data = self.s[-1]
+        del self.s[-1]
+        return data
+    
+    def is_empty(self):
+        return len(self.s) == 0
+        
+    def peek(self):
+        return self.s[0]
+        
+    def size(self):
+        return len(self.s)
+        
+if __name__ == '__main__':
+    stack1 = Stack()
+    if stack1.is_empty():
         print("Stack is empty")
-    else:
-        e=stack.pop()
-        print("removed element: ",e)
-        print(stack)
-while True:
-    print("Select the operation: 1=Push 2=Pop 3=Quit")
-    choice= int(input())
-    if choice == 1:
-        push()
-    elif choice == 2:
-        pop_element()
-    elif choice == 3:
-        break
-    else:
-        print("Enter the correct operation ! ")
+    data = stack1.top()
+    if data is None:
+        print("Cannot top an empty stack")
+    data = stack1.top()
+    if data is None:
+        print("Cannot pop an empty stack")
+    for x in range(1,20,2):
+        stack1.push(x)
+        
+    value = stack1.top()
+    print("Top element: ",value)
+    
+    data = stack1.peek()
+    print("Peek Element: ",value)
+    
+    print("Size of stack: ",str(stack1.size()))
+    
+    while stack1.is_empty()!=True:
+        value= stack1.pop()
+        print("Poped data: ",value)
+    
